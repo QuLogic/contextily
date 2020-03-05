@@ -5,6 +5,7 @@ import pytest
 from numpy.testing import assert_allclose
 
 
+@pytest.mark.network
 def test_sources():
     # NOTE: only tests they download, does not check pixel values
     w, s, e, n = (
@@ -18,6 +19,7 @@ def test_sources():
         img, ext = ctx.bounds2img(w, s, e, n, 4, source=getattr(tilers, src), ll=True)
 
 
+@pytest.mark.network
 def test_deprecated_url_format():
     old_url = "http://a.tile.openstreetmap.org/tileZ/tileX/tileY.png"
     new_url = "http://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -37,6 +39,7 @@ def test_deprecated_url_format():
     assert_allclose(ext1, ext2)
 
 
+@pytest.mark.network
 def test_providers():
     # NOTE: only tests they download, does not check pixel values
     w, s, e, n = (
@@ -77,6 +80,7 @@ def test_provider_attribute_access():
         provider.non_existing_key
 
 
+@pytest.mark.network
 def test_url():
     # NOTE: only tests they download, does not check pixel values
     w, s, e, n = (
